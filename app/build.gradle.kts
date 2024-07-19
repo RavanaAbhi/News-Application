@@ -66,6 +66,14 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation (libs.androidx.room.paging)
-//    kapt(libs.androidx.room.runtime)
 
+    // retrofit
+    implementation (libs.retrofit2.retrofit)
+
+    // GSON
+    implementation (libs.converter.gson)
+
+    // coroutine
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.kotlinx.coroutines.core)
 }

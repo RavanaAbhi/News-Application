@@ -76,4 +76,12 @@ dependencies {
     // coroutine
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
+
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+
+    implementation (libs.hilt.android)
+//    kapt ("com.google.dagger:hilt-compiler:2.42")
+    implementation (libs.androidx.hilt.lifecycle.viewmodel)
+//    kapt ("androidx.hilt:hilt-compiler:1.0.0")
 }

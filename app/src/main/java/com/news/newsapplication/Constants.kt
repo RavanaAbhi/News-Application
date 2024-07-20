@@ -6,15 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+const val BASE_URL = "https://newsapi.org/v2/"
 
-const val SPLASH_DELAY = 3000
-const val BASE_URL = "https://newsapi.org/v2/everything?q=apple"
-const val NEWS_API_KEY = "f0422484f613437dbe5f9f85107eb38b"
-const val SORT_BY = "popularity"
-const val DATE_FROM = "from=2024-07-18"
-const val DATE_TO = "to=2024-07-18"
-
-class Retrofit {
+object Retrofit {
 
     private var retrofit: Retrofit? = null
 
@@ -31,7 +25,7 @@ class Retrofit {
                 .create()
 
             retrofit = Retrofit.Builder()
-                .baseUrl("https://thebestiesapp.com/mobile/")
+                .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()

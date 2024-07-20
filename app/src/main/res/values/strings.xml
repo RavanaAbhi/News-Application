@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">News Application</string>
     <string name="error_loading_data">Error loading data</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="details_activity">Details Page</string>
 </resources>

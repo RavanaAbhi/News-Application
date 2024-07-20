@@ -25,7 +25,7 @@ class ItemAdapter (private val onItemClick: (ArticlesItem) -> Unit) :
 
     inner class ItemViewHolder(private val binding: ItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(article: ArticlesItem, onClick: (ArticlesItem) -> Unit) {
+        fun bind(article: ArticlesItem,onClick: (ArticlesItem) -> Unit) {
             binding.article = article
             binding.executePendingBindings()
             binding.root.setOnClickListener { onClick(article) }

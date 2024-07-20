@@ -3,6 +3,7 @@ package com.news.newsapplication.data.repository
 import android.content.Context
 import android.net.ConnectivityManager
 import com.news.newsapplication.data.Resource
+import com.news.newsapplication.data.Resource.Success
 import com.news.newsapplication.data.model.News
 import com.news.newsapplication.data.local.ItemDao
 import com.news.newsapplication.data.local.ItemEntity
@@ -30,7 +31,7 @@ class ItemRepositoryImpl @Inject constructor(
         toDate : String,
         sortBy: String,
         apiKey: String
-    ): Flow<List<ArticlesItem>> = flow {
+    ): Flow<Resource<List<ArticlesItem>>> = flow {
         emit(Resource.Loading())
 
         if (isInternetAvailable()) {
@@ -40,17 +41,17 @@ class ItemRepositoryImpl @Inject constructor(
                 val localArticles = articleDao.getAllArticles().first().map { it.toDomain() }
                 if (apiArticles != localArticles) {
                     articleDao.insertAll(apiArticles.map { it.toEntity() })
-                    emit(Resource.Success(apiArticles))
+                    emit(Success(apiArticles))
                 } else {
-                    emit(Resource.Success(localArticles))
+                    emit(Success(localArticles))
                 }
             } catch (e: Exception) {
                 emit(Resource.Error("Failed to fetch data from API"))
             }
         } else {
             try {
-                val localArticles = articleDao.getAllArticles().map { it.toDomain() }
-                emit(Resource.Success(localArticles))
+                val localArticles = articleDao.getAllArticles().first().map { it.toDomain() }
+                emit(Success(localArticles))
             } catch (e: Exception) {
                 emit(Resource.Error("Failed to fetch data from local database"))
             }

@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -57,10 +57,9 @@ dependencies {
 
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.androidx.room.compiler)
-
     // Guava support for Room, including Optional and ListenableFuture
     implementation (libs.androidx.room.guava)
-
+    kapt(libs.androidx.room.compiler)
     // optional - Test helpers
     testImplementation (libs.androidx.room.testing)
 
@@ -81,7 +80,9 @@ dependencies {
     implementation (libs.androidx.lifecycle.runtime.ktx)
 
     implementation (libs.hilt.android)
-//    kapt ("com.google.dagger:hilt-compiler:2.42")
     implementation (libs.androidx.hilt.lifecycle.viewmodel)
-//    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+    kapt (libs.androidx.hilt.compiler)
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
 }

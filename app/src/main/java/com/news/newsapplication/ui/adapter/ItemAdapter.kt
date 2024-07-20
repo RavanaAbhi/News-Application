@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.news.newsapplication.data.model.ArticlesItem
 import com.news.newsapplication.data.model.News
 import com.news.newsapplication.databinding.ItemViewBinding
 
-class ItemAdapter (private val onItemClick: (News) -> Unit) :
-    ListAdapter<News, ItemAdapter.ItemViewHolder>(ItemDiffCallback()) {
+class ItemAdapter (private val onItemClick: (ArticlesItem) -> Unit) :
+    ListAdapter<ArticlesItem, ItemAdapter.ItemViewHolder>(ItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,21 +18,22 @@ class ItemAdapter (private val onItemClick: (News) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val article = getItem(position)
+        holder.bind(article,onItemClick)
+
     }
 
     inner class ItemViewHolder(private val binding: ItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: News) {
-//            binding.itemName.text = item.name
-            binding.root.setOnClickListener {
-                onItemClick(item)
-            }
+        fun bind(article: ArticlesItem, onClick: (ArticlesItem) -> Unit) {
+            binding.article = article
+            binding.executePendingBindings()
+            binding.root.setOnClickListener { onClick(article) }
         }
     }
 
-    class ItemDiffCallback : DiffUtil.ItemCallback<News>() {
-        override fun areItemsTheSame(oldItem: News, newItem: News): Boolean = oldItem.totalResults == newItem.totalResults
-        override fun areContentsTheSame(oldItem: News, newItem: News): Boolean = oldItem == newItem
+    class ItemDiffCallback : DiffUtil.ItemCallback<ArticlesItem>() {
+        override fun areItemsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean = oldItem.url == newItem.url
+        override fun areContentsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean = oldItem == newItem
     }
 }

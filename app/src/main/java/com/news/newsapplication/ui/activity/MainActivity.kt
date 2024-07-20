@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.news.newsapplication.data.Resource
 
 import com.news.newsapplication.databinding.ActivityMainBinding
 import com.news.newsapplication.ui.adapter.ItemAdapter
@@ -39,8 +40,26 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.items.collect { items ->
-                adapter.submitList(items)
+            viewModel.items.collect { resource ->
+                when(resource) {
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.recyclerView.visibility = View.GONE
+                        binding.errorText.visibility = View.GONE
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.VISIBLE
+                        binding.errorText.visibility = View.GONE
+                        adapter.submitList(resource)
+                    }
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.GONE
+                        binding.errorText.visibility = View.VISIBLE
+                        binding.errorText.text = resource.value.toString()
+                    }
+                }
             }
         }
 

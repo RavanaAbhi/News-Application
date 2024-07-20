@@ -1,8 +1,11 @@
 [versions]
 agp = "8.5.0"
-daggerCompiler = "2.28.3"
-googleDaggerCompiler = "2.51.1"
+artifactid = "version"
+compiler = "4.11.0"
+daggerCompiler = "2.42"
+glide = "4.12.0"
 hiltAndroid = "2.42"
+hiltCompilerVersion = "1.2.0"
 hiltLifecycleViewmodel = "1.0.0-alpha03"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -17,9 +20,11 @@ activity = "1.9.0"
 constraintlayout = "2.1.4"
 retrofitVersion = "2.9.0"
 roomRuntime = "2.6.1"
+room = "2.5.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompilerVersion" }
 androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodel" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
@@ -28,10 +33,14 @@ androidx-room-guava = { module = "androidx.room:room-guava", version.ref = "room
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomRuntime" }
+artifactid = { module = "groupId:artifactId", version.ref = "artifactid" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "daggerCompiler" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -46,4 +55,5 @@ retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref =
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin"}
 

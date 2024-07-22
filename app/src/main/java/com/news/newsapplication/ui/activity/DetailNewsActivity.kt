@@ -1,21 +1,13 @@
 package com.news.newsapplication.ui.activity
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.news.newsapplication.R
-import com.news.newsapplication.data.local.ItemDao
-import com.news.newsapplication.data.local.ItemEntity
-import com.news.newsapplication.data.model.ArticlesItem
-import com.news.newsapplication.data.model.News
 import com.news.newsapplication.databinding.ActivityDetailNewsBinding
 import com.news.newsapplication.ui.viewmodel.LatestNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.net.URL
 
 @AndroidEntryPoint
 class DetailNewsActivity : AppCompatActivity() {

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp) apply false
 }
 
 android {
@@ -14,7 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -52,8 +54,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     //dagger
-    implementation (libs.dagger)
-    annotationProcessor (libs.dagger.compiler)
+//    implementation (libs.dagger)
+//    annotationProcessor (libs.dagger.compiler)
 
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.androidx.room.compiler)
@@ -77,12 +79,14 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
 
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.lifecycle.runtime.ktx)
+//    implementation (libs.androidx.lifecycle.runtime.ktx)
 
     implementation (libs.hilt.android)
-    implementation (libs.androidx.hilt.lifecycle.viewmodel)
     kapt (libs.androidx.hilt.compiler)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
     implementation(libs.androidx.room.ktx)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+//    implementation (libs.androidx.lifecycle.viewmodel.ktx)
 }

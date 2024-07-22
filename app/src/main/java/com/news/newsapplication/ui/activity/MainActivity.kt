@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +21,7 @@ import com.news.newsapplication.databinding.ActivityMainBinding
 import com.news.newsapplication.ui.adapter.ItemAdapter
 import com.news.newsapplication.ui.viewmodel.LatestNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbar.materialToolbarBackIcon.visibility = View.GONE
         binding.toolbar.materialToolbarBackIcon.title = R.string.main_activity.toString()
-
 
         lifecycleScope.launch {
             viewModel.items.collect { resource ->

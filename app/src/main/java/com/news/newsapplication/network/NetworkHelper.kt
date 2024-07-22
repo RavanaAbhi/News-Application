@@ -1,5 +1,16 @@
 package com.news.newsapplication.network
 
-interface NetworkHelper {
-    fun isNetworkConnected(): Boolean
+import android.content.Context
+import android.net.ConnectivityManager
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+
+class NetworkHelper @Inject constructor(@ApplicationContext private val context: Context) {
+
+    fun isNetworkConnected(): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
+    }
+
 }

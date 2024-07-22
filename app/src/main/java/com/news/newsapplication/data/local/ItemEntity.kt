@@ -4,13 +4,17 @@ import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import javax.annotation.Nonnull
 
 @Entity(tableName = "articles")
 data class ItemEntity(
     val url: String?,
-    val sourceId: String?,
+    @Nonnull
+    @PrimaryKey
+    val sourceId: String,
     val sourceName: String?,
     val author: String?,
     val title: String?,

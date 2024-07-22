@@ -1,4 +1,4 @@
-package com.news.newsapplication
+package com.news.newsapplication.utils
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

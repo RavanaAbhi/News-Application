@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApplication"
+        android:name=".NewApplication"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.activity.DetailNewsActivity"
             android:exported="false" />

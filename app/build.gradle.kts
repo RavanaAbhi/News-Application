@@ -84,5 +84,5 @@ dependencies {
     kapt (libs.androidx.hilt.compiler)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
-
+    implementation(libs.androidx.room.ktx)
 }

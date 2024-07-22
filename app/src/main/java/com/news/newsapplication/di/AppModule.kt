@@ -2,7 +2,7 @@ package com.news.newsapplication.di
 
 import android.content.Context
 import androidx.room.Room
-import com.news.newsapplication.Retrofit
+import com.news.newsapplication.utils.Retrofit
 import com.news.newsapplication.data.local.AppDataBase
 import com.news.newsapplication.data.local.ItemDao
 import com.news.newsapplication.data.remote.service.ApiService
@@ -11,6 +11,7 @@ import com.news.newsapplication.domain.ItemRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton

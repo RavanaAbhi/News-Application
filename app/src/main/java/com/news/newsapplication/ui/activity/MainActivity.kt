@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.materialToolbarBackIcon.title = R.string.main_activity.toString()
 
 
-
-
         lifecycleScope.launch {
             viewModel.items.collect { resource ->
                 when(resource) {

@@ -22,6 +22,7 @@ import com.news.newsapplication.ui.adapter.ItemAdapter
 import com.news.newsapplication.ui.viewmodel.LatestNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -33,34 +34,39 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: LatestNewsViewModel by viewModels()
 
+//    private lateinit var newsAdapter: ItemAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
 
-        binding.toolbar.materialToolbarBackIcon.visibility = View.GONE
-        binding.toolbar.materialToolbarBackIcon.title = R.string.main_activity.toString()
+        binding.materialToolbarBackIcon.visibility
+        binding.materialToolbarBackIcon.title = R.string.main_activity.toString()
 
-        lifecycleScope.launch {
+
+        lifecycleScope.launch(Dispatchers.IO) {
             viewModel.items.collect { resource ->
-                when(resource) {
+                when (resource) {
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.VISIBLE
                         binding.recyclerView.visibility = View.GONE
                         binding.errorText.visibility = View.VISIBLE
                     }
+
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.GONE
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.errorText.visibility = View.GONE
-
                     }
+
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.recyclerView.visibility = View.GONE
                         binding.errorText.visibility = View.GONE
-//                        binding.errorText.text = resource.value.toString()
+
                         recyclerView(resource.value)
+
                     }
                 }
             }
@@ -69,20 +75,18 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.internetAvailable.collect { available ->
                 if (available) {
-                    Toast.makeText(this@MainActivity, "Internet Available", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Internet Available", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
 
-
     }
-
-
-
 
 
     private fun recyclerView(resource: List<ArticlesItem>) = binding.recyclerView.apply {
-        adapter = ItemAdapter(this@MainActivity,resource)
-        binding.recyclerView.adapter = adapter
+        adapter = ItemAdapter(this@MainActivity, resource)
+        layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL,false)
     }
+
 }

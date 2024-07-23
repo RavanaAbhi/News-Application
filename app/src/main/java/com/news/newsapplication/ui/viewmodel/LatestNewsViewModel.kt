@@ -1,7 +1,9 @@
 package com.news.newsapplication.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.news.newsapplication.BuildConfig
 import com.news.newsapplication.data.Resource
 import com.news.newsapplication.data.model.ArticlesItem
 import com.news.newsapplication.data.repository.ItemRepository
@@ -25,11 +27,12 @@ class LatestNewsViewModel @Inject constructor (
     val internetAvailable: StateFlow<Boolean> = _internetAvailable
 
     init {
-        val query = "tesla"
+        val query = "apple"
         val fromDate = "2024-07-22"
-        val toDate = "2024-007-22"
-        val sortBy = "publishedAt"
-        val apiKey = "f0422484f613437dbe5f9f85107eb38b"
+        val toDate = "2024-07-22"
+        val sortBy = "popularity"
+        val apiKey = BuildConfig.API_KEY
+        Log.e("LatestNewsViewModel", "query: $query, fromDate: $fromDate, toDate: $toDate, sortBy: $sortBy, apiKey: $apiKey")
 
         viewModelScope.launch {
             if (networkHelper.isNetworkConnected()) {

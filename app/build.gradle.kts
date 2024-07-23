@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,9 +7,14 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
 }
 
+val localProperties = Properties()
+localProperties.load(project.rootProject.file("local.properties").inputStream())
+val apiKey = localProperties.getProperty("API_KEY")
+
 android {
     namespace = "com.news.newsapplication"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.news.newsapplication"
@@ -17,6 +24,9 @@ android {
         versionName = "1.0"
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField("String", "API_KEY", "\"${apiKey}\"")
     }
 
     buildTypes {
@@ -37,6 +47,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         dataBinding = true
     }
 

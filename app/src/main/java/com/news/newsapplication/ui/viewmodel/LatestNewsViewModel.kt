@@ -26,8 +26,8 @@ class LatestNewsViewModel @Inject constructor (
 
     init {
         val query = "tesla"
-        val fromDate = "2024-06-19"
-        val toDate = "2024-06-19"
+        val fromDate = "2024-07-22"
+        val toDate = "2024-007-22"
         val sortBy = "publishedAt"
         val apiKey = "f0422484f613437dbe5f9f85107eb38b"
 

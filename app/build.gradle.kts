@@ -1,9 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("org.jetbrains.kotlin.kapt")
-    id("com.google.dagger.hilt.android")
-    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.dagger.hilt.plugin)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -81,12 +80,12 @@ dependencies {
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
 //    implementation (libs.androidx.lifecycle.runtime.ktx)
 
-    implementation (libs.hilt.android)
+    implementation(libs.dagger.hilt)
     kapt (libs.androidx.hilt.compiler)
     implementation (libs.glide)
     annotationProcessor (libs.compiler)
     implementation(libs.androidx.room.ktx)
-    kapt(libs.hilt.compiler)
+    kapt(libs.dagger.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 //    implementation (libs.androidx.lifecycle.viewmodel.ktx)
 }

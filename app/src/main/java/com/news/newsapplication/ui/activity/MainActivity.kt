@@ -47,21 +47,20 @@ class MainActivity : AppCompatActivity() {
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.VISIBLE
                         binding.recyclerView.visibility = View.GONE
-                        binding.errorText.visibility = View.GONE
+                        binding.errorText.visibility = View.VISIBLE
                     }
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.GONE
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.errorText.visibility = View.GONE
-//                        adapter.submitList(resource)
-//                        recyclerView(resource)
-                        Log.d("LatestNewsViewModel", "Loading...$resource")
+
                     }
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.recyclerView.visibility = View.GONE
-                        binding.errorText.visibility = View.VISIBLE
-                        binding.errorText.text = resource.value.toString()
+                        binding.errorText.visibility = View.GONE
+//                        binding.errorText.text = resource.value.toString()
+                        recyclerView(resource.value)
                     }
                 }
             }
@@ -76,24 +75,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val adapter = ItemAdapter { _ ->
-            val intent = Intent(this, DetailNewsActivity::class.java)
-//            intent.putExtra("article", article)
-            startActivity(intent)
-        }
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-        binding.recyclerView.adapter = adapter
-
     }
 
 
 
 
 
-//    private fun recyclerView(resource: Resource.Loading<List<ArticlesItem>>) = binding.recyclerView.apply {
-//        adapter = ItemAdapter(resource)
-//        binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-//        binding.recyclerView.adapter = adapter
-//    }
+    private fun recyclerView(resource: List<ArticlesItem>) = binding.recyclerView.apply {
+        adapter = ItemAdapter(this@MainActivity,resource)
+        binding.recyclerView.adapter = adapter
+    }
 }

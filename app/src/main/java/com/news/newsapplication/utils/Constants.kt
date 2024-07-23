@@ -10,26 +10,24 @@ const val BASE_URL = "https://newsapi.org/v2/"
 
 object Retrofit {
 
-    private var retrofit: Retrofit? = null
+    private lateinit var retrofit: Retrofit
 
-    fun getClient(): Retrofit? {
-        if (retrofit == null) {
-            val okHttpClient = OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.MINUTES)
-                .readTimeout(5, TimeUnit.MINUTES)
-                .writeTimeout(5, TimeUnit.MINUTES)
-                .build()
+    fun getClient(): Retrofit {
+        val okHttpClient = OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
+            .writeTimeout(5, TimeUnit.MINUTES)
+            .build()
 
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
 
-            retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-        }
+        retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
         return retrofit
     }
 

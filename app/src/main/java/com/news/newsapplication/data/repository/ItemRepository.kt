@@ -1,5 +1,6 @@
 package com.news.newsapplication.data.repository
 
+import android.util.Log
 import com.news.newsapplication.data.Resource
 import com.news.newsapplication.data.Resource.Error
 import com.news.newsapplication.data.Resource.Loading
@@ -25,8 +26,10 @@ class ItemRepository @Inject constructor(
                     if (!articles.isNullOrEmpty()) {
                         itemDao.insertAll(articles)
                         emit(Success(articles))
+                        Log.e("fetchLatestNews",""+articles)
                     } else {
                         emit(Error("No articles found"))
+                        Log.e("fetchLatestNews",""+articles)
                     }
                 } else {
                     emit(Error("API call failed with response code: ${response.code()}"))

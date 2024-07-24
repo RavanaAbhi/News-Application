@@ -50,6 +50,9 @@ android {
         buildConfig = true
         dataBinding = true
     }
+    defaultConfig {
+        testInstrumentationRunner = "com.news.newsapplication.HiltTestRunner"
+    }
 
 }
 
@@ -60,6 +63,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.runner)
+    implementation(libs.androidx.rules)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -83,7 +88,7 @@ dependencies {
 
     // GSON
     implementation (libs.converter.gson)
-
+    implementation (libs.androidx.core)
     // coroutine
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
@@ -99,4 +104,11 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 //    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    // For instrumented tests
+    androidTestImplementation (libs.hilt.android.testing)
+    kaptAndroidTest (libs.hilt.android.compiler)
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation (libs.androidx.core.testing)
+    implementation (libs.kotlin.stdlib)
 }

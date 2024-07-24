@@ -2,8 +2,13 @@
     <string name="app_name">News Application</string>
     <string name="error_loading_data">Error loading data</string>
     <string name="no_internet_connection">No internet connection</string>
-    <string name="main_activity">Main Activity</string>
+    <string name="main_activity">Home Page</string>
     <string name="details_activity">Details Page</string>
     <string name="samplenewsdescription">Description\n</string>
     <string name="read_more">Read More</string>
+    <string name="article_image_desc">Image Description\n</string>
+    <string name="title">Title\n</string>
+    <string name="time_dummy">Time Stamp</string>
+    <string name="description">Description</string>
+    <string name="content">Content</string>
 </resources>

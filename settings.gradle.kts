@@ -10,8 +10,19 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "kotlin-parcelize") {
+                useModule("org.jetbrains.kotlin:kotlin-parcelize:${requested.version}")
+            }
+        }
+    }
+
+
 }
 dependencyResolutionManagement {
+
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()

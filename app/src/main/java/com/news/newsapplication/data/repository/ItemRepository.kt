@@ -40,15 +40,17 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    suspend fun getCachedNews(): Flow<Resource<List<ArticlesItem>>> {
-        return flow {
-            emit(Loading())
-            val articles = itemDao.getAllArticles()
-            if (articles.isNotEmpty()) {
-                emit(Success(articles))
-            } else {
-                emit(Error("No cached articles found"))
-            }
+    suspend fun cacheNews(articles: List<ArticlesItem>) {
+        itemDao.insertAll(articles)
+    }
+
+    suspend fun getCachedNews(): Flow<Resource<List<ArticlesItem>>> = flow {
+        emit(Loading())
+        try {
+            val cachedArticles = itemDao.getAllArticles()
+            emit(Success(cachedArticles))
+        } catch (e: Exception) {
+            emit(Error(e.message ?: "Unknown error"))
         }
     }
 }

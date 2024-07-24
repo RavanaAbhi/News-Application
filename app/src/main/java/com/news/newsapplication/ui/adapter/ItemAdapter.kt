@@ -2,6 +2,7 @@ package com.news.newsapplication.ui.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -21,6 +22,7 @@ class ItemAdapter (val context: Context,private val article: List<ArticlesItem>/
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val article = article[position]
+        Log.e("onBindViewHolder",""+article)
 
         holder.listLayoutBinding.article = article
 

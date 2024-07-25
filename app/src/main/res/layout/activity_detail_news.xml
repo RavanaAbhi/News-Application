@@ -9,10 +9,11 @@
             type="com.news.newsapplication.data.model.ArticlesItem" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:background="@color/white"
         tools:context=".detail.DetailFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,6 +76,7 @@
                 android:text="@{news.publishedAt}"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
                 tools:text="@string/time_dummy" />
@@ -88,6 +90,7 @@
                 android:text="@{news.publishedAt}"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginTop="24dp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +104,7 @@
                 android:lineSpacingMultiplier="1.5"
                 android:text="@{news.description}"
                 android:textSize="14sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_synopsis"
@@ -113,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 tools:text="Isi"
+                android:textColor="@color/black"
                 android:text="@{news.content}"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -128,6 +133,7 @@
                 android:lineSpacingMultiplier="1.5"
                 android:text="@{news.content}"
                 android:textSize="14sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_content"
@@ -135,5 +141,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

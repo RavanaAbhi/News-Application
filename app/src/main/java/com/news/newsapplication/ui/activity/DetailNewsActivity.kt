@@ -38,15 +38,9 @@ class DetailNewsActivity : AppCompatActivity() {
         val article = intent.getParcelableExtra<ArticlesItem>("article")
         if (article != null) {
             binding.news = article
-//            populateUI(article)
             Log.e("onCreate", "Selected article: $article")
         }
 
     }
 
-//    private fun populateUI(article: ArticlesItem) {
-//        binding.articleTitle.text = article.title
-//        binding.articleDescription.text = article.description
-//         Glide.with(this).load(article.urlToImage).into(binding.articleImage)
-//    }
 }

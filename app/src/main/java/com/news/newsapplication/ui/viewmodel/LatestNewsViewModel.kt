@@ -12,6 +12,7 @@ import com.news.newsapplication.data.model.ArticlesItem
 import com.news.newsapplication.data.repository.ItemRepository
 import com.news.newsapplication.network.NetworkHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -48,7 +49,7 @@ class LatestNewsViewModel @Inject constructor (
         val sortBy = "popularity"
         val apiKey = BuildConfig.API_KEY
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (networkHelper.isNetworkConnected()) {
                 repository.fetchLatestNews(query, fromDate, toDate, sortBy, apiKey).collect { resource ->
                     _items.value = resource

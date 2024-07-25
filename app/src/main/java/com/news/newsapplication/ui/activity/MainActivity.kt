@@ -49,44 +49,6 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
         setupSearchView()
 
-
-        /*lifecycleScope.launch {
-            viewModel.items.collect { resource ->
-                when (resource) {
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                        binding.recyclerView.visibility = View.GONE
-                        binding.errorText.visibility = View.VISIBLE
-                    }
-
-                    is Resource.Loading -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerView.visibility = View.VISIBLE
-                        binding.errorText.visibility = View.GONE
-                    }
-
-                    is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerView.visibility = View.GONE
-                        binding.errorText.visibility = View.GONE
-
-
-//                        recyclerView(resource.value)
-
-                    }
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.internetAvailable.collect { available ->
-                if (available) {
-                    Toast.makeText(this@MainActivity, "Internet Available", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        }*/
-
     }
 
 

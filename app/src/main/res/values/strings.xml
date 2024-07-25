@@ -11,4 +11,5 @@
     <string name="time_dummy">Time Stamp</string>
     <string name="description">Description</string>
     <string name="content">Content</string>
+    <string name="search">Search\n</string>
 </resources>
